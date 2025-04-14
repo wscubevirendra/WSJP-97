@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        .container {
+            width: 600px;
+            height: 500px;
+            margin: auto;
+            border: 2px solid red;
+            position: relative;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            color: white;
+            font-size: 100px;
+        }
+
+        .box:nth-child(1) {
+            background-color: yellow;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .box:nth-child(2) {
+            background-color: teal;
+            top: 50px;
+            left: 50px;
+            z-index: 100;
+        }
+        .box:nth-child(3) {
+            background-color: firebrick;
+            top: 80px;
+            left: 80px;
+            z-index: 100000000000000000000000000;
+        }
+        .box:nth-child(4) {
+            background-color: rebeccapurple;
+            top: 120px;
+            left: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+
+    </div>
+
+</body>
+
+</html>
