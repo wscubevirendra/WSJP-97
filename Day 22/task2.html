@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background-image: linear-gradient(to bottom, #2980b9, #3498db);
+        }
+
+        .main {
+            width: 100%;
+            height: 100%;
+            /* border: 2px solid red; */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bubble {
+
+            /* background-color: red; */
+            border-radius: 50%;
+            position: absolute;
+            bottom: -300px;
+            box-shadow: inset 0 0 25px rgba(26, 190, 232, 0.4), inset -5px -10px 35px rgba(255, 255, 255, 0.777);
+            animation: moves linear infinite;
+
+        }
+
+        .bubble:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            left: 10%;
+            animation-delay: 1s;
+            animation-duration: 4s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 70px;
+            height: 70px;
+            left: 30%;
+            animation-delay: 2s;
+            animation-duration: 7s;
+
+
+        }
+
+        .bubble:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            left: 50%;
+            animation-delay: 0.5s;
+            animation-duration: 3s;
+
+
+        }
+
+        .bubble:nth-child(4) {
+            left: 70%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 3s;
+            animation-duration: 7s;
+
+
+        }
+
+        .bubble:nth-child(5) {
+            left: 90%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 3.5s;
+            animation-duration: 3s;
+
+
+        }
+
+        @keyframes moves {
+
+            0% {
+                transform: translateY(0px) rotateZ(0deg);
+              
+
+            }
+
+            100% {
+                transform: translateY(-900px) rotateZ(360deg);
+          
+
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+
+    </div>
+
+</body>
+
+</html>

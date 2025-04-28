@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .card {
+            width: 300px;
+            height: 300px;
+            /* border: 2px solid red; */
+            box-shadow: 2px 2px 3px 4px gray;
+            margin: 100px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            transition: 2s;
+        }
+
+        .card:hover {
+            transform: rotateY(360deg);
+        }
+
+        .card h1 {
+            transform: translateZ(150px);
+            transition-delay: 0.6s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>Hello</h1>
+    </div>
+
+</body>
+
+</html>

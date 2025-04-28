@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        .container {
+            width: 800px;
+            height: 500px;
+            border: 2px solid red;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .card {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            animation-name: moves;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate-reverse;
+            animation-delay: 5s;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        @keyframes moves {
+            0% {
+                top: 0;
+                left: 0;
+                background-color: green;
+            }
+
+            25% {
+                top: 0;
+                left: 700px;
+                background-color: yellow;
+            }
+
+            50% {
+                top: 400px;
+                left: 700px;
+                background-color: gold;
+            }
+
+            75% {
+                top: 400px;
+                left: 0;
+                background-color: royalblue;
+            }
+
+            100% {
+                top: 0;
+                left: 0;
+                background-color: teal;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+
+        </div>
+    </div>
+
+</body>
+
+</html>
