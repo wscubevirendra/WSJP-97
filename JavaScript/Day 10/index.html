@@ -1,0 +1,73 @@
+<script>
+
+    // function sayHello(name) {
+    //     console.log(`Hello ${name}`)
+
+    // }
+
+    // sayHello("Rohit")   //function calling
+    // sayHello("Mohit")   //function calling
+    // sayHello("Shiva")   //function calling
+    // sayHello("Virendra")   //function calling
+    // sayHello("Sachin")   //function calling
+
+    // function addTwoNumber(a, b) {
+    //     return 
+
+
+    //     a + b
+
+    // }
+
+    // console.log(addTwoNumber(20, 25))
+
+    // function evenArray(array) {
+    //     //[1,2,3,4,5]
+    //     var newArr = []
+    //     for (var i = 0; i < array.length; i++) {
+    //         if (array[i] % 2 == 0) {
+    //             newArr.push(array[i])
+    //         }
+    //     }
+    //     return newArr
+    // }
+
+    // var result = evenArray([10, 20, 30, 11, 21, 23]);
+    // console.log(result)
+    // evenArray([1, 2, 3, 4, 5]);
+    // evenArray([5, 6, 7, 8, 9, 10]);
+    // evenArray([51, 26, 74, 85, 95, 10]);
+
+
+
+    function calc(a, b, sign) {
+        var result;
+        if (sign == "+") {
+            result = (a + b)
+        } else if (sign == "-") {
+            result = (a - b)
+        } else if (sign == "*") {
+            result = (a * b)
+        } else if (sign == "/") {
+            result = (a / b)
+        } else if (sign == "%") {
+            result = (a % b)
+        } else {
+            result = ("Invalid input")
+        }
+
+        return result
+
+    }
+    console.log(    calc(20, 50, "+")
+    )
+    calc(10, 5, "-")
+    calc(10, 5, "asdfasad")
+
+
+
+
+
+
+
+</script>
