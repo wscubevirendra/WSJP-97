@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: white;
+            color: white;
+            padding: 20px;
+
+            box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        #openMenu {
+            font-size: 30px;
+            color: black;
+            cursor: pointer;
+        }
+
+        #closeMenu {
+            font-size: 30px;
+            color: black;
+            cursor: pointer;
+            display: none;
+
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        ul {
+            list-style: none;
+            position: fixed;
+            top: 0px;
+            right: -100%;
+            width: 20%;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            color: white;
+            padding: 20px;
+            font-size: 20px;
+            transition: 0.6s;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <i onclick="toggleMenu(1)" id="openMenu" class="fa-solid fa-bars"></i>
+        <i onclick="toggleMenu(2)" id="closeMenu" class="fa-solid fa-xmark"></i>
+
+        <ul id="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+
+    </header>
+
+
+    <script>
+        var openMenu = document.getElementById("openMenu");
+        var closeMenu = document.getElementById("closeMenu");
+        var menu = document.getElementById("menu");
+
+
+        function toggleMenu(flag) {
+            if (flag == 1) {
+                menu.style.right = "0px"
+                closeMenu.style.display = "block"
+                openMenu.style.display = "none"
+
+            } else {
+                menu.style.right = "-100%"
+                closeMenu.style.display = "none"
+                openMenu.style.display = "block"
+            }
+        }
+
+
+
+
+    </script
+
+</body>
+
+</html>

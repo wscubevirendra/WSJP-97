@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mouse Move Animation</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #111;
+      overflow: hidden;
+    }
+    #follower {
+      width: 50px;
+      height: 50px;
+      background: rgb(33, 194, 33);
+      border-radius: 50%;
+      position: absolute;
+      pointer-events: none;
+      transition: transform 0.05s ease;
+    }
+  </style>
+</head>
+<body>
+  <div id="follower"></div>
+
+  <script>
+    const follower = document.getElementById("follower");
+
+    document.onmousemove = function(e) {
+      const x = e.clientX;
+      const y = e.clientY;
+      follower.style.transform = `translate(${x}px, ${y}px)`;
+    };
+  </script>
+</body>
+</html>

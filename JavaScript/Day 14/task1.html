@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div onclick="clickHandler(this)">Item1</div>
+    <div onclick=" clickHandler(this)">Item2</div>
+    <div onclick="clickHandler(this)">Item3</div>
+    <div onclick="clickHandler(this)">Item4</div>
+    <div onclick="clickHandler(this)">Item5</div>
+    <div onclick="clickHandler(this)">Item6</div>
+    <div onclick="clickHandler(this)">Item6</div>
+    <div onclick="clickHandler(this)">Item6</div>
+
+    <script>
+        function clickHandler(element) {
+            element.style.backgroundColor = "red";
+            element.style.color = "white";
+            element.style.fontSize = "20px";
+            element.style.fontWeight = "bold";
+            element.style.padding = "10px";
+            element.innerText = "Clicked!";
+
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>

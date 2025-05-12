@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        .container {
+            width: 300px;
+            height: 150px;
+            box-shadow: 2px 4px 6px gray;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            font-size: 30px;
+            margin: 50px auto;
+        }
+
+        button {
+            width: 50px;
+            height: 50px;
+            font-size: 30px;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button onclick="count(1)">+</button>
+        <h1 id="display">0</h1>
+        <button onclick="count(2)">-</button>
+    </div>
+
+    <script>
+        var display = document.getElementById("display");
+        var value = 0;
+
+
+        function count(kuchbhi) {
+            if (kuchbhi == 1) {
+                value++;
+
+            } else if (kuchbhi == 2) {
+                value--;
+            }
+            display.innerText = value;
+
+        }
+
+
+    
+    </script>
+</body>
+
+</html>

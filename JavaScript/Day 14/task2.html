@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .box {
+            width: 400px;
+            height: 200px;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        10
+    </div>
+    <button onclick="swap()">></button>
+    <div class="box">
+
+    </div>
+
+
+    <script>
+        var box = document.getElementsByClassName("box");
+
+        function swap() {
+            box[1].innerText = box[0].innerText;
+            box[0].innerText = "";
+
+        }
+    </script>
+
+</body>
+
+</html>

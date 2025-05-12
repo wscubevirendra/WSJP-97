@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .parent {
+            width: 700px;
+            height: 500px;
+            /* border: 2px solid red; */
+            margin: 30px auto;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .other {
+            width: 20%;
+            height: 100%;
+            padding: 5px;
+            overflow: scroll;
+
+        }
+
+        .main {
+            width: 75%;
+            height: 100%;
+
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .other img {
+            width: 100%;
+            height: 150px;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            border: 2px solid rgba(24, 102, 181, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="other">
+            <img onmouseover="swapHandler(this)" src="1.jpeg" alt="">
+            <img onmouseover="swapHandler(this)" src="2.jpeg" alt="">
+            <img onmouseover="swapHandler(this)" src="3.jpeg" alt="">
+            <img onmouseover="swapHandler(this)" src="4.jpeg" alt="">
+        </div>
+        <div class="main">
+            <img src="1.jpeg" alt="">
+        </div>
+
+    </div>
+
+
+    <script>
+        var images = document.querySelectorAll(".other img");
+        var main = document.querySelector(".main img");
+
+        function swapHandler(elem) {
+            main.src = elem.src
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My website</title>
+    <style>
+        #heading {
+            background-color: red;
+        }
+
+        .pg {
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="ref"><i>Best MERN stack course in jaipur ?</i></h1>
+    <button onclick="refChange()">Click</button>
+
+    <script>
+        var ref = document.getElementById("ref");
+
+        function refChange() {
+            ref.innerHTML = "<div> WsCube Tech </div>";
+            ref.style.backgroundColor = "red";
+            ref.style.color = "green";
+            ref.style.fontSize = "50px"
+
+
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>

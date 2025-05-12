@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Greeting Card Generator</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+
+        .parent {
+            width: 90%;
+            max-width: 1000px;
+            height: auto;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .container {
+            flex: 1 1 48%;
+            min-height: 500px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .container input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .output {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .styling-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .styling-container input[type="text"],
+        .styling-container input[type="color"],
+        .styling-container input[type="number"] {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-width: 150px;
+        }
+
+        .styling-container button {
+            padding: 10px 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .styling-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 style="text-align: center;">Greeting Card Generator</h2>
+
+    <div class="parent">
+        <!-- Input Form -->
+        <div class="container">
+            <div>
+                <label for="to">To</label>
+                <input onkeyup="greetingCard(this,0)" class="inp" type="text" placeholder="Enter recipient name">
+            </div>
+            <div>
+                <label for="from">From</label>
+                <input onkeyup="greetingCard(this,1)" class="inp" type="text" placeholder="Enter your name">
+            </div>
+            <div>
+                <label for="message">Message</label>
+                <textarea onkeyup="greetingCard(this,2)" class="inp" rows="8"
+                    placeholder="Write your message..."></textarea>
+            </div>
+        </div>
+
+        <!-- Output Card -->
+        <div class="container" style="gap: 20px;">
+            <h4 class="output">To:</h4>
+            <h5 class="output">From:</h5>
+            <p class="output">Message:</p>
+        </div>
+    </div>
+
+    <!-- Styling Controls -->
+    <div class="styling-container">
+        <input onchange="BgHandler(this.value)" placeholder="Paste background image URL" type="text">
+        <input onchange="colorHandler(this.value)" type="color" title="Pick Text Color">
+        <button onclick="fontSizeHandler(1)">A+</button>
+        <input id="size" type="number" value="16" min="10" max="100">
+        <button onclick="fontSizeHandler(2)">A-</button>
+    </div>
+
+    <script>
+        var output = document.getElementsByClassName("output");
+        var inp = document.getElementsByClassName("inp");
+        var container = document.getElementsByClassName("container");
+        var size = document.getElementById("size")
+        var count = 16;
+
+        function greetingCard(inp, flag) {
+            const labels = ["To", "From", "Message"];
+            output[flag].innerText = `${labels[flag]}: ${inp.value}`;
+        }
+
+        function BgHandler(src) {
+            container[1].style.background = `url(${src})`;
+        }
+
+        function colorHandler(color) {
+            container[1].style.color = color;
+        }
+
+        function fontSizeHandler(flag) {
+            if (flag === 1 && count < 100) count++;
+            else if (flag === 2 && count > 10) count--;
+            container[1].style.fontSize = count + "px";
+            size.value = count;
+        }
+
+        size.addEventListener("change", function () {
+            count = parseInt(size.value);
+            container[1].style.fontSize = count + "px";
+        });
+    </script>
+
+</body>
+
+</html>
