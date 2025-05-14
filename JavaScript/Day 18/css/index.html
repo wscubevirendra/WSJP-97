@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 2px solid red;
+
+        }
+
+        .mybg {
+            background-color: green;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            color: white;
+            font-size: 45px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        Hello
+    </div>
+    <button class="btn">Add</button>
+    <button class="btn">Remove</button>
+    <button class="btn">Toggle</button>
+
+
+    <script>
+        var btn = document.querySelectorAll(".btn");
+        var box = document.querySelector(".box")
+        btn[0].addEventListener(
+            "click",
+            function () {
+                box.classList.add("mybg")
+
+            }
+        )
+
+        btn[1].addEventListener(
+            "click",
+            function () {
+                box.classList.remove("mybg")
+            }
+            
+        )
+
+        btn[2].addEventListener(
+            "click",
+            function(){
+                box.classList.toggle("mybg")
+            }
+        )
+
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .accordion {
+            width: 600px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            /* border: 2px solid red; */
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .accordion button {
+            width: 100%;
+            background-color: #007bff;
+            padding: 16px;
+            outline: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+
+        }
+
+        .content {
+
+            text-align: justify;
+            overflow: hidden;
+            visibility: hidden;
+            opacity: 0;
+            height: 0;
+            transition: height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+            /* transition: 0.5s; */
+
+        }
+
+        .show {
+            padding: 16px;
+            height: auto;
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="accordion">
+        <div>
+            <button class="accordion-button">Section 1</button>
+            <div class="content show">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente deserunt laborum voluptatum vitae
+                distinctio dolore, quas, cupiditate aspernatur inventore quos quae illum ex eveniet consequatur quo
+                fugiat fugit autem tenetur?
+            </div>
+        </div>
+        <div>
+            <button class="accordion-button">Section 2</button>
+            <div class="content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente deserunt laborum voluptatum vitae
+                distinctio dolore, quas, cupiditate aspernatur inventore quos quae illum ex eveniet consequatur quo
+                fugiat fugit autem tenetur?
+            </div>
+        </div>
+        <div>
+            <button class="accordion-button">Section 3</button>
+            <div class="content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente deserunt laborum voluptatum vitae
+                distinctio dolore, quas, cupiditate aspernatur inventore quos quae illum ex eveniet consequatur quo
+                fugiat fugit autem tenetur?
+            </div>
+        </div>
+        <div>
+            <button class="accordion-button">Section 3</button>
+            <div class="content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente deserunt laborum voluptatum vitae
+                distinctio dolore, quas, cupiditate aspernatur inventore quos quae illum ex eveniet consequatur quo
+                fugiat fugit autem tenetur?
+            </div>
+        </div>
+        <div>
+            <button class="accordion-button">Section 3</button>
+            <div class="content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente deserunt laborum voluptatum vitae
+                distinctio dolore, quas, cupiditate aspernatur inventore quos quae illum ex eveniet consequatur quo
+                fugiat fugit autem tenetur?
+            </div>
+        </div>
+        <div>
+            <button class="accordion-button">Section 3</button>
+            <div class="content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente deserunt laborum voluptatum vitae
+                distinctio dolore, quas, cupiditate aspernatur inventore quos quae illum ex eveniet consequatur quo
+                fugiat fugit autem tenetur?
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var buttons = document.querySelectorAll('.accordion-button');
+        var content = document.querySelectorAll('.content')
+
+
+        buttons.forEach(
+            function (button, index) {
+                button.addEventListener('click', function () {
+                    content.forEach(
+                        function (btn, i) {
+
+                            if (i == index) {
+                                console.log(i)
+                                content[i].classList.add('show')
+                            } else {
+                                content[i].classList.remove('show')
+                                
+                            }
+                        }
+                    )
+                }
+                )
+            }
+        )
+
+
+    </script>
+</body>
+
+</html>
