@@ -1,0 +1,8 @@
+@media (min-width: 922px) {
+    .mynav {
+        flex-direction: row;
+        background-color: white;
+    }
+
+
+}

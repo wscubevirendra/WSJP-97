@@ -1,0 +1,30 @@
+body {
+    background-color: black;
+}
+
+.input-group {
+    width: 50% !important;
+    margin: auto;
+
+}
+
+.input-group input {
+    border-radius: 20px !important;
+}
+
+.overview {
+    width: 100%;
+    padding: 4px;
+    background-color: white;
+    bottom: -100%;
+    transition: 0.6s;
+
+}
+
+.my-card {
+    overflow: hidden;
+}
+
+.my-card:hover .overview {
+    bottom: 0;
+}

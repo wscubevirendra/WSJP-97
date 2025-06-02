@@ -1,0 +1,133 @@
+<script>
+    // function addnumber(...num) {
+    //     var sum = 0
+    //     for (data of num) {
+    //         sum = sum + data
+    //     }
+    //     console.log(sum)
+
+    // }
+
+    // addnumber(20, 30, 50)  //3
+    // addnumber(20, 30, 500, 20, 40) //5
+    // addnumber(1, 2, 3, 4, 5, 6, 6, 6, 5, 55, 44)
+    // addnumber(1, 2, 3, 4, 5, 6, 6, 6, 5, 55, 44, 1, 2, 3, 4, 5, 6, 6, 6, 5, 55, 44)
+
+
+
+
+
+
+
+
+    // for (var i = 0; i < array.length; i++) {
+    //     newArr.push(array[i]*2)
+    // }
+
+    // for (let data of array) {
+    //     newArr.push(data * 2)
+
+    // }
+
+    // const newArr = array.forEach(
+    //     (data, index) => {
+    //         return data * 2
+    //     }
+    // )
+
+    // const newArr = array.map(
+    //     (data, index) => {
+    //         return data * 2
+    //     }
+    // )
+
+    // console.log(newArr)
+
+
+    // var array = [11, 12, 13, 14, 15, 16, 17];
+
+    // const newArr = array.filter(
+    //     (data, index) => {
+    //         return data % 2 != 0 ? true : false
+    //     }
+    // )
+
+    // console.log(newArr)
+
+    // const num = 21;
+
+    // // if (num % 2 == 0) {
+    // //     console.log("Even")
+    // // } else {
+    // //     console.log("odd")
+    // // }
+
+    // const result = num % 2 == 0 ? "Even" : "Odd"    //num % 2 == 0 -----condition
+    // console.log(result)
+
+
+
+    // var arr1 = [1, 2, 3, 4, 5, 6];
+    // var arr2 = [10, 20, 30, 409, 50];
+    // var newArr = [...arr1, ...arr2]
+    // console.log(newArr)
+
+    var student = [
+        {
+            id: 1,
+            name: "Akshay",
+            age: 23
+        },
+        {
+            id: 2,
+            name: "Mahesh",
+            age: 26
+        },
+        {
+            id: 3,
+            name: "Ganesh",
+            age: 45
+        },
+        {
+            id: 4,
+            name: "Rohit",
+            age: 34
+        }
+    ];
+
+    console.log(student)
+
+    function findData(id) {
+        return student.find(
+            (data) => {
+                return data.id === id
+            }
+        )
+    }
+
+    console.log(findData(4))
+    console.log(findData(6))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

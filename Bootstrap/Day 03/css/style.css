@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+* {
+    font-family: "Inter", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.cart {
+    width: 50px;
+    height: 50px;
+    background-color: #EBEEF6;
+    border-radius: 50%;
+}
+
+.cart-num {
+    width: 20px;
+    height: 20px;
+    background-color: #1ABA1A;
+    border-radius: 50%;
+}
+
+header nav ul li a {
+    color: #000000;
+    font-weight: 700;
+}
+
+.mynav {
+    width: 20%;
+    height: 100vh;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    align-content: space-between;
+}

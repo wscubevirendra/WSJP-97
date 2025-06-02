@@ -1,0 +1,92 @@
+@media only screen and (min-width:992px) {
+    .navbar-sticky {
+        width: 100%;
+        height: 90px;
+        background-color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        opacity: 0;
+        visibility: 0;
+    }
+
+    .sticky .navbar-sticky {
+        visibility: visible;
+        opacity: 1;
+
+    }
+
+    .sticky header {
+        max-width: 1140px;
+        margin: 0 auto;
+        /* width: 100%; */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 222;
+        background-color: white; 
+    }
+
+    /* .sticky header {
+        max-width: 1140px;
+        margin: 0 auto;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 222;
+        background-color: white;
+    } */
+
+}
+
+@media only screen and (min-width:0px) and (max-width:992px) {
+    .top-section {
+        display: none;
+    }
+
+    header ul {
+        width: 40%;
+        height: 100vh;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.8);
+        position: fixed;
+        top: 0;
+        left: -100%;
+        color: white;
+        transition: 0.4s;
+        /* display: none; */
+
+    }
+
+    header ul li a {
+        padding: 10px 22px 10px 15px;
+    }
+
+    #toggleBtn {
+        display: block;
+    }
+
+    .navbar-overlay {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 2222;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .done {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+
+}
