@@ -1,0 +1,24 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+}
+
+.card {
+  width: 100%;
+  height: 100vh;
+background-color: white;
+}
+
+button {
+  border: 1px solid teal;
+  margin: 20px;
+  padding: 10px;
+  color: green;
+  background-color: aqua;
+}
