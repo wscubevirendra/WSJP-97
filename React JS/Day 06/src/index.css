@@ -1,0 +1,22 @@
+.card {
+  max-width: 250px;
+  position: relative;
+  overflow: hidden;
+}
+
+.overview {
+  width: 100%;
+  background-color: white;
+  box-shadow: 2px 2px 3px white;
+  position: absolute;
+  bottom: -300px;
+  left: 0;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.card:hover .overview {
+  bottom: 0px;
+  transition: 0.3s;
+
+}

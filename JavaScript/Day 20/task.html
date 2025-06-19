@@ -28,8 +28,6 @@
             height: 100%;
             transition: transform 1s ease;
             flex-shrink: 0;
-            
-
         }
 
         .item img {
@@ -40,8 +38,8 @@
         .btn-container {
             width: 100%;
             margin: auto;
-            /* border: 2px solid green; */
             text-align: center;
+            position: relative;
         }
 
         button {
@@ -53,6 +51,14 @@
             border-radius: 10px;
             cursor: pointer;
             margin-right: 20px;
+            position: absolute;
+            top: 50%;
+            z-index: 10;
+        }
+
+        button:nth-child(1) {
+            top: 50%;
+            left: 30%;
         }
     </style>
 </head>
@@ -86,35 +92,22 @@
     </div>
 
     <script>
-        var items = document.querySelectorAll(".item");
+        var images = document.querySelectorAll(".item");
         var btn = document.querySelectorAll("button");
         var poe = 0;
 
         btn[1].addEventListener(
             "click",
-            function (e) {
-                if (items.length - 3 < poe) return
+            function () {
+                console.log(images.length - 2 > poe)
+                if (images.length - 5 < poe) return
                 poe++
-                for (img of items) {
-                    img.style.transform = `translateX(-${poe * 100}%)`;
+
+                for (image of images) {
+                    image.style.transform = `translateX(-${poe * 200}%)`
                 }
             }
         )
-
-        btn[0].addEventListener(
-            "click",
-            function (e) {
-                if (poe == 0) return
-                poe--
-                for (img of items) {
-                    img.style.transform = `translateX(-${poe * 100}%)`;
-                }
-            }
-        )
-
-
-
-
 
     </script>
 

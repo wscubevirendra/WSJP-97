@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Document</title>
+    <title>FAQ Accordion</title>
     <style>
         * {
             padding: 0;
@@ -43,51 +43,63 @@
             transform: scale(1);
             padding: 10px;
         }
+
+        .arrotop {
+            transform: rotateZ(180deg);
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
     <div class="container" id="faqContainer">
         <div class="faq-item">
-            <button class="btn">Can I track the location of my booked bus online?</button>
+            <button class="btn">Can I track the location of my booked bus online? <i
+                    class="fa-solid   fa-caret-down"></i></button>
             <p class="content">Yes, you can track your bus online using our “Track My Bus” feature. It allows passengers
                 and their families to track the live bus location.</p>
         </div>
         <div class="faq-item">
-            <button class="btn">Can I cancel my ticket online?</button>
+            <button class="btn">Can I cancel my ticket online? <i class="fa-solid fa-caret-down"></i></button>
             <p class="content">Yes, you can cancel your ticket from the 'My Bookings' section. Refund policies will
                 apply as per the guidelines.</p>
         </div>
         <div class="faq-item">
-            <button class="btn">How to download the bus app?</button>
+            <button class="btn">How to download the bus app? <i class="fa-solid fa-caret-down"></i></button>
             <p class="content">You can download our app from Google Play Store or Apple App Store. Search for 'Track My
                 Bus' and install it.</p>
         </div>
         <div class="faq-item">
-            <button class="btn">Can I change my boarding point after booking?</button>
+            <button class="btn">Can I change my boarding point after booking? <i
+                    class="fa-solid fa-caret-down"></i></button>
             <p class="content">Yes, depending on the operator's policy. Please go to 'My Bookings' and check if the
                 'Change Boarding Point' option is available.</p>
         </div>
     </div>
 
     <script>
-        const faqContainer = document.querySelector("container");
+        const faqContainer = document.querySelector("#faqContainer");
+        const content = document.querySelectorAll('.content');
+        const i = document.querySelectorAll('i');
+
 
         faqContainer.addEventListener("click", function (e) {
-         
-            if (e.target.classList.contains("btn") == true) {
-                console.log(e.target.nextElementSibling)
+            if (e.target.classList.contains("btn")) {
                 const currentContent = e.target.nextElementSibling;
-
                 document.querySelectorAll(".content").forEach(content => {
                     if (content !== currentContent) {
                         content.classList.remove("open");
                     }
                 });
-
+                
                 currentContent.classList.toggle("open");
             }
         });
+
+
+
     </script>
 </body>
 

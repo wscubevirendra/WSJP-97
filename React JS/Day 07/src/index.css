@@ -1,0 +1,7 @@
+.container {
+  max-width: 800px;
+  margin-top: 50px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 10px;
+  min-height: 400px;
+}
