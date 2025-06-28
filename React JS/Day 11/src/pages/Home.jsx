@@ -6,7 +6,10 @@ export default function Home() {
     const { category_slug } = useParams();
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+    const [pages, setPages] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0)
+    const limit = 20;
 
 
     useEffect(
@@ -38,7 +41,7 @@ export default function Home() {
 
             axios.get(API).then(
                 (response) => {
-
+                    setPages(Math.ceil(response.data.total / limit))
                     setProducts(response.data.products)
                 }
             ).catch(
@@ -54,14 +57,50 @@ export default function Home() {
         [category_slug]
     )
 
+
+    useEffect(
+        () => {
+            setLoading(true)
+            axios.get(`https://dummyjson.com/products?limit=${limit}&skip=` + (currentPage * limit)).then(
+                (response) => {
+                    setProducts(response.data.products)
+                }
+            ).catch(
+                (error) => {
+                    setProducts([])
+                }
+            ).finally(
+                () => {
+                    setLoading(false)
+                }
+            )
+        },
+        [currentPage]
+    )
+
+    const pagination = [];
+
+    for (let i = 0; i < pages; i++) {
+        pagination.push(
+            <button onClick={() => setCurrentPage(i)} class="px-3 cursor-pointer py-2 bg-blue-700 text-sm font-medium text-gray-700 text-white border-t border-b border-gray-300 ">
+                {i + 1}
+            </button>
+        )
+
+    }
+
     return (
         <div className=' max-w-[1300px] grid grid-cols-5  mx-auto '>
             <div className='col-span-1'>
                 <ul className='p-6'>
+                    <li className={` mb-2 bg-blue-800 cursor-pointer text-white text-center p-1 rounded-sm hover:bg-teal-700 hover:font-bold hover:animate-pulse`}>
+                        <Link to="/"> All</Link>
+
+                    </li>
                     {
                         categories.map((cat, index) => {
                             return (
-                                <li key={index} className=' bg-gray-800 mb-2 cursor-pointer text-white text-center p-1 rounded-sm hover:bg-teal-700 hover:font-bold hover:animate-pulse'>
+                                <li key={index} className={` ${category_slug == cat.slug ? 'bg-teal-800' : 'bg-blue-700'} mb-2 cursor-pointer text-white text-center p-1 rounded-sm hover:bg-teal-700 hover:font-bold hover:animate-pulse`}>
                                     <Link to={`/${cat.slug}`}> {cat.name}</Link>
 
                                 </li>
@@ -73,6 +112,13 @@ export default function Home() {
 
             </div>
             <div className='col-span-4  grid grid-cols-3 content-start my-4 gap-4'>
+                <div class="flex items-center col-span-full justify-center mt-8">
+                    <div class="inline-flex shadow-sm rounded-md" role="group" aria-label="Pagination">
+                        {pagination}
+
+                    </div>
+                </div>
+
                 {
                     loading == true
                         ?
