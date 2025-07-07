@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaReact, FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { Context } from "../Store";
 
 const Header = () => {
+    const { cart } = useContext(Context)
     return (
         <header className="flex items-center justify-between bg-gray-800 p-4 shadow-md">
             <div className="flex items-center space-x-2">
@@ -25,6 +27,11 @@ const Header = () => {
                         <a href="#" className="text-white hover:text-blue-200 transition">
                             Contact
                         </a>
+                    </li>
+                    <li>
+                        <Link to="/cart" className="text-white hover:text-blue-200 transition">
+                            Cart({cart.length})
+                        </Link>
                     </li>
                 </ul>
             </nav>

@@ -1,37 +1,175 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Search App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        .input-group {
+            width: 50% !important;
+            margin: auto;
+        }
+
+        .input-group input {
+            border-radius: 20px !important;
+        }
+
+        .overview {
+            width: 100%;
+            padding: 10px;
+            background-color: white;
+            color: black;
+            bottom: -100%;
+            transition: 0.6s;
+        }
+
+        .my-card {
+            overflow: hidden;
+            position: relative;
+            height: 400px;
+            border-radius: 10px;
+        }
+
+        .my-card:hover .overview {
+            bottom: 0;
+            position: absolute;
+        }
+
+        .vote {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 4px 8px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .green {
+            background-color: #28a745;
+        }
+
+        .orange {
+            background-color: #ffc107;
+        }
+
+        .red {
+            background-color: #dc3545;
+        }
+
+        img {
+            object-fit: cover;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-
-        <div class="input-group my-4 input-group-lg">
-
-            <input type="text" class="form-control " aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-md">
+    <div class="container py-4">
+        <div class="input-group input-group-lg mb-4">
+            <input type="text" class="form-control" placeholder="Search Movies...">
         </div>
 
-        <div class="container-fluid px-0">
-            <div class="container-xxl px-0">
-                <div class="row gy-4">
+        <div class="row gy-4" id="movie-box"></div>
+    </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="movieModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="movieTitle"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
+                <div class="modal-body" id="movieDetails"></div>
             </div>
         </div>
-
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-        crossorigin="anonymous"></script>
-    <script src="js/app.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const API_KEY = "04c35731a5ee918f014970082a0088b1";
+        const TOPMOVIESAPIURL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}&page=1`;
+        const IMGPATH = "https://image.tmdb.org/t/p/w1280";
+        const SEARCHAPI = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&query=`;
+
+        const input = document.querySelector("input");
+        const movieBox = document.querySelector("#movie-box");
+
+        // Fetch and show movies
+        const getMovies = async (API) => {
+            const res = await fetch(API);
+            const data = await res.json();
+            showMovies(data.results);
+        };
+
+        // Initial load
+        getMovies(TOPMOVIESAPIURL);
+
+        // Show Movies
+        function showMovies(data) {
+            movieBox.innerHTML = "";
+            data.forEach(movie => {
+                const div = document.createElement("div");
+                div.classList.add("col-12", "col-md-3");
+                div.innerHTML = `
+                    <div class="my-card bg-light shadow">
+                        <img src="${IMGPATH + movie.poster_path}" alt="${movie.title}" class="w-100 h-100">
+                        <span class="vote ${getRatingColor(movie.vote_average)}">${movie.vote_average}</span>
+                        <div class="overview">
+                            <h6>${movie.title}</h6>
+                            <p>${movie.overview.slice(0, 100)}...</p>
+                            <button class="btn btn-sm btn-primary mt-2" onclick='showModal(${JSON.stringify(movie)})'>More</button>
+                        </div>
+                    </div>
+                `;
+                movieBox.appendChild(div);
+            });
+        }
+
+        // Get rating color
+        function getRatingColor(vote) {
+            if (vote >= 7) return "green";
+            else if (vote >= 5) return "orange";
+            else return "red";
+        }
+
+        // Debounced search
+        let debounce;
+        input.addEventListener("keyup", (e) => {
+            clearTimeout(debounce);
+            debounce = setTimeout(() => {
+                const query = e.target.value;
+                if (query.trim() === "") {
+                    getMovies(TOPMOVIESAPIURL);
+                } else {
+                    getMovies(SEARCHAPI + query);
+                }
+            }, 500);
+        });
+
+        // Show movie in modal
+        function showModal(movie) {
+            const titleEl = document.getElementById("movieTitle");
+            const detailsEl = document.getElementById("movieDetails");
+
+            titleEl.textContent = movie.title;
+            detailsEl.innerHTML = `
+                <img src="${IMGPATH + movie.backdrop_path}" class="img-fluid rounded mb-3" />
+                <p><b>Release Date:</b> ${movie.release_date}</p>
+                <p><b>Rating:</b> ${movie.vote_average}</p>
+                <p>${movie.overview}</p>
+            `;
+
+            new bootstrap.Modal(document.getElementById("movieModal")).show();
+        }
+    </script>
 </body>
 
 </html>

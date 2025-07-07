@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import MainLayout from "./pages/MainLayout";
 import Home from "./pages/Home";
 import ProductView from "./pages/ProductView";
+import Cart from "./pages/Cart";
 
 
 function App() {
@@ -19,6 +20,10 @@ function App() {
         {
           path: "/product-view/:id",
           element: <ProductView />
+        },
+        {
+          path:"/cart",
+          element:<Cart/>
         }
       ]
     }

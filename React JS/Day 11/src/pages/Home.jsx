@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useParams } from 'react-router-dom'
+import { Context } from '../Store';
 
 export default function Home() {
+    const { addToCart } = useContext(Context)
     const { category_slug } = useParams();
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -151,7 +153,7 @@ export default function Home() {
                                     <div className="p-4">
                                         <h2 className="text-lg font-semibold text-gray-800">{data.title}</h2>
                                         <p className="text-xl font-bold text-green-600 mt-2">${data.price}</p>
-                                        <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition-colors duration-300">
+                                        <button onClick={() => addToCart(data.id)} className="mt-4 cursor-pointer  w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition-colors duration-300">
                                             Add to Cart
                                         </button>
                                     </div>
