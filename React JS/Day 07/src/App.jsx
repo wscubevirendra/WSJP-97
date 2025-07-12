@@ -4,16 +4,20 @@ export default function App() {
   const [items, setItems] = useState([]);
   const inpRef = useRef();
 
+
   function inputHandler() {
     if (inpRef.current.value === "") return alert("Input value is empty");
     setItems([...items, inpRef.current.value]);
     inpRef.current.value = "";
   }
 
+
   function removeHandler(index) {
     const newData = items.filter((data, i) => i !== index);
     setItems(newData);
   }
+
+
 
   return (
     <div className='container'>
