@@ -1,65 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors")
 const server = express();
+const UserRoute = require("./router/user.router")
 server.use(express.json())
-
-const userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    contact: {
-        type: String,
-        default: null
-
-    },
-    status: {
-        type: Boolean,
-        default: true
-    }
-
-})
-
-const UserModel = mongoose.model("user", userSchema)
-
-
-
-server.post("/user/create", async (req, res) => {
-    try {
-        const user = await UserModel.create({
-            name: req.body.name,
-            email: req.body.email,
-            contact: req.body.contact,
-            password:req.body.password
-        })
-
-        await user.save()
-        res.status(201).json({
-            message: "User create ",
-            flag: 1
-        })
-
-
-    } catch (err) {
-        res.status(500).json({
-            message: "Internal Server error",
-            flag: 0
-        })
-    }
-
-
-})
-
-
+server.use(cors([{ origin: "http://localhost:3000" }]));
+server.use("/user", UserRoute)
 
 
 mongoose.connect("mongodb://localhost:27017/", { dbName: "wsjp97" }).then(

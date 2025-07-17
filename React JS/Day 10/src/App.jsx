@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Card from './components/Card'
@@ -9,12 +9,26 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import MainPage from './pages/MainPage'
 
 export default function App() {
+  const [recipes, setRecipes] = useState([]);
+  async function getrecipes() {
+    const response = await fetch("https://dummyjson.com/recipes");
+    const data = await response.json();
+    setRecipes(data.recipes)
+  }
+
+  useEffect(
+    () => {
+      getrecipes()
+    },
+    []
+  )
+
   const routers = createBrowserRouter([
     {
       path: "/",
       element: <MainPage />,
       children: [
-        { path: "/", element: <Home /> },
+        { path: "/", element: <Home recipes={recipes} /> },
         { path: "/about", element: <About /> },
         { path: "/contact", element: <Contact /> }
       ]

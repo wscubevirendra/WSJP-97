@@ -5,6 +5,7 @@ import Card from './components/Card'
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
+  const [data, setData] = useState({})
 
 
   function setSearchValue(value) {
@@ -21,6 +22,8 @@ export default function App() {
     const response = await fetch(API);
     const data = await response.json();
     setMovies(data.results)
+    setData(data)
+  
   }
 
   useEffect(
@@ -37,7 +40,7 @@ export default function App() {
   return (
     <div className='container-xl'>
       <Input setSearchValue={setSearchValue} />
-      <Card movies={movies} />
+      <Card movies={data?.results} />
     </div>
   )
 }

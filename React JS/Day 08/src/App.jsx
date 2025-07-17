@@ -5,7 +5,7 @@ export default function App() {
   async function getproduct() {
     const response = await fetch("https://dummyjson.com/products");
     const data = await response.json()
-    setProduct(data.products)
+    setProduct(data)
 
   }
 

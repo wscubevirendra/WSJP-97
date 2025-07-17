@@ -1,21 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 
-export default function Card({ title, description, image }) {
-    const [recipes, setRecipes] = useState([]);
-    async function getrecipes() {
-        const response = await fetch("https://dummyjson.com/recipes");
-        const data = await response.json();
-        setRecipes(data.recipes)
-    }
-
-    useEffect(
-        () => {
-            getrecipes()
-        },
-        []
-    )
-
+export default function Card({ recipes }) {
+  
     return (
         <div className='container-xl my-5'>
             <div className='row gy-4'>
