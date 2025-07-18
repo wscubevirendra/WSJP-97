@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require("cors");
+const categoryRouter = require('./router/category.router');
 const server = express();
-
-
+server.use(express.json());
+server.use(cors([{ origin: "http://localhost:3000" }]));
+server.use("/category", categoryRouter)
 
 mongoose.connect("mongodb://localhost:27017/", {
     dbName: "wsjp97"
