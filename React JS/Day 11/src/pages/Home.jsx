@@ -104,7 +104,6 @@ export default function Home() {
                             return (
                                 <li key={index} className={` ${category_slug == cat.slug ? 'bg-teal-800' : 'bg-blue-700'} mb-2 cursor-pointer text-white text-center p-1 rounded-sm hover:bg-teal-700 hover:font-bold hover:animate-pulse`}>
                                     <Link to={`/${cat.slug}`}> {cat.name}</Link>
-
                                 </li>
                             )
                         })
