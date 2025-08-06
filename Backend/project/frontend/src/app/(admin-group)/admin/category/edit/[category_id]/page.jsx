@@ -46,7 +46,7 @@ export default function CategoryEdit({ params }) {
             })
             .catch((error) => {
                 console.log(error)
-                notify("Something .....", 0);
+              notify("Something went wrong", 0);
 
             });
     };

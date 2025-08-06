@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import Link from "next/link";
 import {
@@ -13,21 +15,36 @@ import {
     FaThLarge,
     FaChartBar,
     FaShareAlt,
+    FaUserSecret
 } from "react-icons/fa";
+import { FaProductHunt } from "react-icons/fa6";
+import { BiCategory } from "react-icons/bi";
+import { IoIosColorPalette } from "react-icons/io";
+import { SiBrandfolder } from "react-icons/si";
+import { AxiosInstance } from "@/library/helper";
+
+
+
+
 
 const menuItems = [
     { label: "DashBoard", icon: <FaClock />, path: "/" },
-    { label: "Categories", icon: <FaShoppingCart />, path: "/admin/category" },
-    { label: "Colors", icon: <FaPhone />, path: "/crm" },
-    { label: "Brands", icon: <FaFolder />, path: "/project-management" },
-    { label: "Orders", icon: <FaSuitcase />, path: "/travel-agency" },
-    { label: "Users", icon: <FaDollarSign />, badge: "NEW", path: "/stock" },
-    { label: "Chat", icon: <FaComments />, path: "/chat" },
-    { label: "Email", icon: <FaEnvelope />, path: "/email" },
-    { label: "Events", icon: <FaCalendarAlt />, path: "/events" }
+    { label: "Categories", icon: <BiCategory />, path: "/admin/category" },
+    { label: "Colors", icon: <IoIosColorPalette />, path: "/admin/color" },
+    { label: "Brands", icon: <SiBrandfolder />, path: "/admin/brand" },
+    { label: "Products", icon: <FaProductHunt />, path: "/admin/product" },
+    { label: "Users", icon: <FaUserSecret />, badge: "NEW", path: "/stock" },
+
+
 ];
 
 const SideMenu = () => {
+
+    function logoutHandler() {
+        AxiosInstance.get("admin/logout")
+
+    }
+
     return (
         <div className="w-64 shadow-sm sticky top-0 left-0 bg-white h-screen p-6 ">
             <h1 className="text-orange-600 text-xl font-bold mb-6">Admin</h1>
@@ -37,7 +54,7 @@ const SideMenu = () => {
                     <li key={idx}>
                         <Link
                             href={item.path}
-                            className="flex items-center text-gray-700 hover:text-orange-500 hover:bg-gray-200 p-2 rounded-sm transition-all"
+                            className="flex items-center cursor-pointer text-gray-700 hover:text-orange-500 hover:bg-gray-200 p-2 rounded-sm transition-all"
                         >
                             <span className="text-lg mr-3">{item.icon}</span>
                             <span className="text-sm font-medium">{item.label}</span>
@@ -49,6 +66,16 @@ const SideMenu = () => {
                         </Link>
                     </li>
                 ))}
+                <li >
+                    <div
+                        onClick={logoutHandler}
+
+                        className="flex items-center text-gray-700 hover:text-orange-500 hover:bg-gray-200 p-2 rounded-sm transition-all"
+                    >
+                        <span className="text-lg mr-3"><FaUserSecret /></span>
+                        <span className="text-sm font-medium">LogOut</span>
+                    </div>
+                </li>
             </ul>
         </div>
     );

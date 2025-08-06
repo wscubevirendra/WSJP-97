@@ -1,17 +1,23 @@
 'use client'
-import { AxiosInstance, notify } from '@/library/helper'
+import { AxiosInstance, getCookies, notify } from '@/library/helper'
 import React from 'react'
 import { useRouter } from 'next/navigation';
 
-export default function StatusBtn({ id, status }) {
+export default function StatusBtn({ path, status }) {
+    const token = getCookies('admin_token');
     const router = useRouter()
     function statusHandler() {
-        AxiosInstance.patch(`category/status/${id}`).then((response) => {
+        AxiosInstance.patch(path, null, {
+            headers: {
+                Authorization: token
+            }
+        }).then((response) => {
             notify(response.data.message, response.data.success);
             if (response.data.success) {
                 router.refresh()
             }
         }).catch((error) => {
+            console.log(error)
             notify("Someting", 0);
 
         });

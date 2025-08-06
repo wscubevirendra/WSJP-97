@@ -55,14 +55,14 @@ export default async function CategoryTable() {
                   </td>
 
                   <td className="whitespace-nowrap pl-10 py-3 space-x-2">
-                    <StatusBtn status={cat.status} id={cat._id} />
+                    <StatusBtn status={cat.status} path={`category/status/${cat._id}`} />
                     <button className="rounded-md bg-gray-100 px-3 py-1.5 text-xs font-medium hover:bg-gray-200">
                       <Link href={`/admin/category/edit/${cat._id}`}>
                         Edit
                       </Link>
 
                     </button>
-                    <DeleteBtn id={cat._id} />
+                    <DeleteBtn path={`category/delete/${cat._id}`} />
                   </td>
                 </tr>
               ))}

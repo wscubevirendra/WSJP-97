@@ -1,11 +1,12 @@
 'use client'
 
-import { AxiosInstance, generateSlug, notify } from "@/library/helper";
+import { AxiosInstance, generateSlug, getCookies, notify } from "@/library/helper";
 import axios from "axios";
 import { useRef } from "react";
 import { FaUpload } from "react-icons/fa"; // Using React Icon
 
 export default function CategoryAdd() {
+    const token = getCookies("admin_token")
     const nameRef = useRef();
     const slugRef = useRef();
 
@@ -21,7 +22,11 @@ export default function CategoryAdd() {
         formData.append("slug", slugRef.current.value);
         formData.append("image", e.target.category_image.files[0]);
 
-        AxiosInstance.post("category/create", formData)
+        AxiosInstance.post("category/create", formData, {
+            headers: {
+                Authorization: token
+            }
+        })
             .then((response) => {
                 notify(response.data.message, response.data.success);
                 if (response.data.success) {
@@ -30,7 +35,7 @@ export default function CategoryAdd() {
                 }
             })
             .catch((error) => {
-                console.log(error);
+                notify("Something went wrong", 0);
             });
     };
 
