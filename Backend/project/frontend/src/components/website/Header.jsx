@@ -1,68 +1,79 @@
-import React from "react";
+import React from 'react';
+import { FaRegHeart, FaShoppingCart } from 'react-icons/fa';
+import { MdKeyboardArrowDown } from 'react-icons/md';
+import { IoMdCall } from 'react-icons/io';
+import Link from 'next/link';
 
 const Header = () => {
-    return (
-        <header className="bg-white shadow-md">
-            <div className="container mx-auto flex items-center justify-between py-4 px-6">
-                {/* Logo */}
-                <div className="flex items-center">
-                    <span className="text-2xl font-bold text-blue-600">ShopEase</span>
-                </div>
-                {/* Navigation */}
-                <nav className="hidden md:flex space-x-8">
-                    <a href="/" className="text-gray-700 hover:text-blue-600 font-medium">
-                        Home
-                    </a>
-                    <a href="/shop" className="text-gray-700 hover:text-blue-600 font-medium">
-                        Shop
-                    </a>
-                    <a href="/about" className="text-gray-700 hover:text-blue-600 font-medium">
-                        About
-                    </a>
-                    <a href="/contact" className="text-gray-700 hover:text-blue-600 font-medium">
-                        Contact
-                    </a>
-                </nav>
-                {/* Actions */}
-                <div className="flex items-center space-x-4">
-                    <button className="relative">
-                        <svg
-                            className="w-6 h-6 text-gray-700 hover:text-blue-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.3h12.2a1 1 0 00.9-1.3L17 13M7 13V6h13"
-                            />
-                        </svg>
-                        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
-                            2
-                        </span>
-                    </button>
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 font-medium">
-                        Sign In
-                    </button>
-                </div>
-                {/* Mobile Menu Button */}
-                <div className="md:hidden">
-                    <button>
-                        <svg
-                            className="w-6 h-6 text-gray-700"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+  return (
+    <header className="w-full shadow-sm">
+      {/* Top bar */}
+      <div className="flex justify-between items-center px-6 py-2 text-sm bg-gray-50 text-gray-700">
+        <div className="flex items-center gap-4">
+          <div className="bg-gray-200 px-2 py-1 rounded text-xs">Hotline 24/7</div>
+          <div className="font-semibold">(025) 3886 25 16</div>
+        </div>
+        <div className="flex items-center gap-6 text-xs">
+          <a href="#" className="hover:underline">Sell on Swoo</a>
+          <a href="#" className="hover:underline">Order Tracki</a>
+          <div className="flex items-center gap-1 cursor-pointer">
+            USD <MdKeyboardArrowDown />
+          </div>
+          <div className="flex items-center gap-1 cursor-pointer">
+            <img src="https://flagcdn.com/us.svg" className="w-4 h-4" alt="USA flag" />
+            Eng <MdKeyboardArrowDown />
+          </div>
+        </div>
+      </div>
+
+      {/* Main navbar */}
+      <div className="flex items-center justify-between px-6 py-4">
+        {/* Logo */}
+        <div className="flex items-center gap-3">
+          <div className="bg-green-500 text-white p-2 rounded-full text-lg">
+            <IoMdCall />
+          </div>
+          <div>
+            <h1 className="text-lg font-bold">SWOO</h1>
+            <p className="text-xs text-gray-500">TECH MART</p>
+          </div>
+        </div>
+
+        {/* Navigation */}
+        <nav className="hidden md:flex gap-6 font-medium text-sm text-black">
+          <div className="flex items-center gap-1 cursor-pointer">
+            <Link href="/">HOME</Link>
+
+          </div>
+          <div className="flex items-center gap-1 cursor-pointer">
+            PAGES <MdKeyboardArrowDown />
+          </div>
+          <div className="flex items-center gap-1 cursor-pointer">
+            <Link href="/store">STORE</Link>
+          </div>
+          <div className="cursor-pointer">CONTACT</div>
+        </nav>
+
+        {/* Right actions */}
+        <div className="flex items-center gap-6">
+          <FaRegHeart className="text-xl text-gray-600 cursor-pointer" />
+
+          <div className="text-sm text-gray-500">
+            <p className="text-[10px]">WELCOME</p>
+            <p className="font-semibold">LOG IN / REGISTER</p>
+          </div>
+
+          <div className="relative flex items-center gap-2">
+            <div className="bg-gray-200 p-2 rounded-full">
+              <FaShoppingCart className="text-xl" />
             </div>
-        </header>
-    );
+            <div className="absolute -top-1 -right-1 bg-green-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">5</div>
+            <div className="text-sm font-semibold">$1,689.00</div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;

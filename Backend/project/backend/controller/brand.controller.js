@@ -1,4 +1,5 @@
 const BrandModel = require("../model/brand.model");
+const ProductModel = require("../model/product.model");
 const { generateUniqueImageName } = require("../utility/helper");
 const { createdResponse, errorResponse, serverErrorResponse, noContentResponse, successResponse, updatedResponse, deletedResponse } = require("../utility/response")
 const fs = require('fs');
@@ -36,14 +37,27 @@ const brand = {
     async read(req, res) {
         try {
             const id = req.params.id;
-            let brand = null;
+
             if (id) {
-                brand = await BrandModel.findById(id);
+
+                const brand = await BrandModel.findById(id);
+                if (!brand) noContentResponse(res);
+                return successResponse(res, "brand find", data)
             } else {
-                brand = await BrandModel.find();
+                const brand = await BrandModel.find();
+                const data = await Promise.all(
+                    brand.map(async (br) => {
+                        const productCount = await ProductModel.countDocuments({ brandId: br._id });
+                        return {
+                            ...br.toObject(), // convert Mongoose document to plain object
+                            productCount
+                        };
+                    })
+                );
+                if (!brand) noContentResponse(res);
+                return successResponse(res, "brand find", data)
             }
-            if (!brand) noContentResponse(res);
-            return successResponse(res, "brand find", brand)
+
         } catch (error) {
             console.log(error)
             return serverErrorResponse(res, error.errmsg)

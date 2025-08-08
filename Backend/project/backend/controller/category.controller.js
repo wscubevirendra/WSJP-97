@@ -1,4 +1,5 @@
 const CategoryModel = require("../model/category.model");
+const ProductModel = require("../model/product.model");
 const { generateUniqueImageName } = require("../utility/helper");
 const { createdResponse, errorResponse, serverErrorResponse, noContentResponse, successResponse, updatedResponse, deletedResponse } = require("../utility/response")
 const fs = require('fs');
@@ -36,14 +37,32 @@ const category = {
     async read(req, res) {
         try {
             const id = req.params.id;
-            let category = null;
+
             if (id) {
-                category = await CategoryModel.findById(id);
+                const category = await CategoryModel.findById(id);
+                return successResponse(res, "category find", category)
+
             } else {
-                category = await CategoryModel.find();
+
+                const category = await CategoryModel.find();
+
+                const data = await Promise.all(
+                    category.map(async (cat) => {
+                        const productCount = await ProductModel.countDocuments({ categoryId: cat._id });
+                        return {
+                            ...cat.toObject(), // convert Mongoose document to plain object
+                            productCount
+                        };
+                    })
+                );
+
+                return successResponse(res, "Category found", data);
+
+
+
             }
+
             if (!category) noContentResponse(res);
-            return successResponse(res, "category find", category)
         } catch (error) {
             console.log(error)
             return serverErrorResponse(res, error.errmsg)
