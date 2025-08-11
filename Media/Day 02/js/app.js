@@ -4,11 +4,10 @@ var navbarOverlay = document.querySelector(".navbar-overlay");
 var header = document.querySelector("header")
 
 
-
 toggleBtn.addEventListener(
     "click",
     function () {
-        navBar.classList.toggle("openMenu")
+        navBar.classList.toggle("openMenu");
         navbarOverlay.classList.add("done");
     }
 )
@@ -17,10 +16,8 @@ toggleBtn.addEventListener(
 navbarOverlay.addEventListener(
     "click",
     function () {
-
-        navBar.classList.remove("openMenu")
-        navbarOverlay.classList.remove("done")
-
+        navBar.classList.remove("openMenu");
+        navbarOverlay.classList.remove("done");
     }
 )
 

@@ -1,5 +1,8 @@
 const { json } = require("express");
 const ProductModel = require("../model/product.model");
+const CategoryModel = require("../model/category.model");
+const ColorModel = require("../model/color.model");
+const BrandModel = require("../model/brand.model");
 const { generateUniqueImageName } = require("../utility/helper");
 const { createdResponse, errorResponse, serverErrorResponse, noContentResponse, successResponse, updatedResponse, deletedResponse } = require("../utility/response")
 const fs = require('fs');
@@ -41,12 +44,27 @@ const product = {
     },
     async read(req, res) {
         try {
+            const { categorySlug, colorSlug, brandSlug } = req.query;
+            const filterQuery = {};
             const id = req.params.id;
             let product = null;
+            if (categorySlug) {
+                const category = await CategoryModel.findOne({ slug: categorySlug });
+                filterQuery.categoryId = category._id
+            }
+            if (colorSlug) {
+                const color = await ColorModel.findOne({ slug: colorSlug });
+                filterQuery.colors = color._id
+            }
+            if (brandSlug) {
+                const brand = await BrandModel.findOne({ slug: brandSlug });
+                filterQuery.brandId = brand._id
+            }
+
             if (id) {
                 product = await ProductModel.findById(id);
             } else {
-                product = await ProductModel.find().populate(["categoryId", "brandId", "colors"]);
+                product = await ProductModel.find(filterQuery).populate(["categoryId", "brandId", "colors"]);
             }
             if (!product) noContentResponse(res);
             return successResponse(res, "product find", product)

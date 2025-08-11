@@ -7,7 +7,8 @@ const ProductCard = ({ product }) => {
         thumbnail,
         originalPrice,
         finalPrice,
-        discountPercentage
+        discountPercentage,
+        colors
     } = product;
 
     return (
@@ -28,12 +29,26 @@ const ProductCard = ({ product }) => {
 
             {/* Product Info */}
             <div className="p-4">
-                <h3 className="text-sm font-semibold text-gray-800 mb-2 truncate">
-                    {name}
-                </h3>
+                <div  className='flex justify-between'>
+                    <h3 className="text-sm font-semibold text-gray-800 mb-2 truncate">
+                        {name}
+                    </h3>
+                    {colors.length > 0 && (
+                        <div className="flex gap-2 mb-2">
+                            {colors.map((color, index) => (
+                                <span
+                                    key={index}
+                                    className="w-5 h-5 rounded-full border border-gray-300"
+                                    style={{ backgroundColor: color.hexcode }}
+                                ></span>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
 
                 {/* Prices */}
-                <div className="flex justify-between items-center gap-2">
+                <div className="flex justify-between items-center gap-2 mb-2">
                     <span className="text-lg font-bold text-green-600">
                         Rs. {finalPrice}
                     </span>
@@ -43,11 +58,14 @@ const ProductCard = ({ product }) => {
                         </span>
                     )}
                 </div>
+
+
+
             </div>
 
             {/* Hover Cart Button */}
-            <div className="absolute   bottom-0 left-0 w-full px-4 pb-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
-                <button className="w-full cursor-pointer  flex items-center justify-center gap-2 px-4 py-2 bg-[#01A49E] text-white text-sm rounded-md hover:bg-[#74adab] transition">
+            <div className="absolute bottom-0 left-0 w-full px-4 pb-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+                <button className="w-full cursor-pointer flex items-center justify-center gap-2 px-4 py-2 bg-[#01A49E] text-white text-sm rounded-md hover:bg-[#74adab] transition">
                     <FaShoppingCart /> Add to Cart
                 </button>
             </div>

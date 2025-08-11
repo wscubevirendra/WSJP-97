@@ -1,9 +1,38 @@
+'use client'
 import { getBrands } from '@/library/api-call';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-const BrandFilter = async () => {
-    const brandData = await getBrands(null);
-    const brands = brandData.data
+const BrandFilter = () => {
+    const router = useRouter()
+    const [brands, setBrands] = useState([]);
+    const [selbrand, setSelbrand] = useState("");
+
+    useEffect(
+        () => {
+            if (selbrand) {
+                const query = new URLSearchParams({ brand: selbrand })
+                router.push(`?${query.toString()}`)
+            } else {
+                window.location.pathname
+            }
+
+        },
+        [selbrand]
+    )
+
+    async function getdata() {
+        const brandData = await getBrands(null);
+        setBrands(brandData.data)
+    }
+
+    useEffect(
+        () => {
+            getdata()
+        },
+        []
+    )
+
 
     return (
         <div className="bg-[#f1f2f6] my-6 rounded-lg p-4 w-64 font-sans">
@@ -17,7 +46,7 @@ const BrandFilter = async () => {
 
                 <ul className="space-y-1 text-sm text-gray-700">
                     {brands.map((item, index) => (
-                        <li key={index} className="cursor-pointer space-y-3 hover:font-bold flex justify-between ">
+                        <li onClick={() => setSelbrand(item.slug)} key={index} className="cursor-pointer space-y-3 hover:font-bold flex justify-between ">
                             <span> {item.name}</span>
                             <b>({item.productCount})</b>
                         </li>
