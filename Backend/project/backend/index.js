@@ -8,6 +8,9 @@ const colorRouter = require('./router/color.router');
 const brandRouter = require('./router/brand.router');
 const productRouter = require('./router/product.router');
 const adminRouter = require('./router/admin.router');
+const userRouter = require('./router/user.router');
+const cartRouter = require('./router/cart.router');
+const orderRouter = require('./router/order.router');
 const server = express();
 server.use(express.json());
 server.use(cookieParser())
@@ -22,6 +25,9 @@ server.use("/color", colorRouter)
 server.use("/brand", brandRouter);
 server.use("/product", productRouter)
 server.use("/admin", adminRouter)
+server.use("/user", userRouter);
+server.use("/cart", cartRouter);
+server.use("/order", orderRouter);
 server.use(express.static('public'));
 
 mongoose.connect(process.env.DATABASE_URL, {

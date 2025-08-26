@@ -5,8 +5,6 @@ import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
 
-
-
 export default function AddUserForm() {
     const router = useRouter()
     const notify = (msg) => toast(msg);

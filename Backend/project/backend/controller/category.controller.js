@@ -87,11 +87,9 @@ const category = {
                 // Generate unique name and path
                 const imageName = generateUniqueImageName(categoryImage.name);
                 const destination = './public/images/category/' + imageName;
-
                 // Save new image
                 categoryImage.mv(destination, async (error) => {
                     if (error) return errorResponse(res, "File not uploaded");
-
                     // Delete old image if it exists
                     const oldImagePath = path.join(__dirname, '../public/images/category/', existingCategory.image);
                     if (fs.existsSync(oldImagePath)) {

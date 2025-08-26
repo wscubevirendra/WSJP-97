@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaShoppingCart } from 'react-icons/fa';
+import CartBtn from './CartBtn';
+
 
 const ProductCard = ({ product }) => {
     const {
@@ -29,7 +30,7 @@ const ProductCard = ({ product }) => {
 
             {/* Product Info */}
             <div className="p-4">
-                <div  className='flex justify-between'>
+                <div className='flex justify-between'>
                     <h3 className="text-sm font-semibold text-gray-800 mb-2 truncate">
                         {name}
                     </h3>
@@ -62,13 +63,8 @@ const ProductCard = ({ product }) => {
 
 
             </div>
+            <CartBtn product={product} />
 
-            {/* Hover Cart Button */}
-            <div className="absolute bottom-0 left-0 w-full px-4 pb-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
-                <button className="w-full cursor-pointer flex items-center justify-center gap-2 px-4 py-2 bg-[#01A49E] text-white text-sm rounded-md hover:bg-[#74adab] transition">
-                    <FaShoppingCart /> Add to Cart
-                </button>
-            </div>
         </div>
     );
 };

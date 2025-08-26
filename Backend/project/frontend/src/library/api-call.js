@@ -57,7 +57,7 @@ const getBrands = async (id = null) => {
     }
 }
 
-const getProducts = async (id = null, categorySlug = null, colorSlug = null, brandSlug = null) => {
+const getProducts = async (id = null, categorySlug = null, colorSlug = null, brandSlug = null, min = null, max = null) => {
     try {
         let API = "product";
         if (id != null) API += `/${id}`;
@@ -65,6 +65,8 @@ const getProducts = async (id = null, categorySlug = null, colorSlug = null, bra
         if (categorySlug) query.append("categorySlug", categorySlug)
         if (colorSlug) query.append("colorSlug", colorSlug)
         if (brandSlug) query.append("brandSlug", brandSlug)
+        if (min) query.append("min", min)
+        if (max) query.append("max", max)
         const response = await AxiosInstance.get(API + `?${query.toString()}`);
         if (response.data.success === true) {
             return response.data

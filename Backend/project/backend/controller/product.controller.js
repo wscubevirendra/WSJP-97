@@ -44,7 +44,7 @@ const product = {
     },
     async read(req, res) {
         try {
-            const { categorySlug, colorSlug, brandSlug } = req.query;
+            const { categorySlug, colorSlug, brandSlug, min, max } = req.query;
             const filterQuery = {};
             const id = req.params.id;
             let product = null;
@@ -59,6 +59,13 @@ const product = {
             if (brandSlug) {
                 const brand = await BrandModel.findOne({ slug: brandSlug });
                 filterQuery.brandId = brand._id
+            }
+
+            if (min && max) {
+                filterQuery.finalPrice = {
+                    $gte: min,
+                    $lte: max
+                }
             }
 
             if (id) {

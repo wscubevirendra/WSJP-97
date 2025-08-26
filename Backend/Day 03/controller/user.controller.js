@@ -38,7 +38,6 @@ const user = {
             })
         }
     },
-
     async read(req, res) {
         try {
             const users = await UserModel.find();

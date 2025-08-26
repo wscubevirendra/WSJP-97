@@ -20,9 +20,6 @@ const errorResponse = (res, message = 'Error occurred', statusCode = 500, data =
     timestamp: new Date().toISOString(),
     ...data
   };
-
-
-
   return res.status(statusCode).json(response);
 };
 

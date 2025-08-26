@@ -24,6 +24,11 @@ function getCookies(name) {
     return null;
 }
 
+function formatIndianCurrency(amount) {
+  return amount.toLocaleString('en-IN', {
+    style: 'currency',
+    currency: 'INR'
+  });
+}
 
-
-export { generateSlug, notify, AxiosInstance, getCookies }
+export { generateSlug, notify, AxiosInstance, getCookies, formatIndianCurrency }
