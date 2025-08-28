@@ -12,6 +12,8 @@ import { logoutHandler, lstoUser } from '@/redux/features/userSlice';
 const Header = () => {
   const dispacher = useDispatch()
   const cartItems = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user.data);
+
   useEffect(
     () => {
       dispacher(lstoCart())
@@ -33,6 +35,9 @@ const Header = () => {
       }
     }
   }, []);
+
+
+
 
 
   return (
@@ -89,8 +94,15 @@ const Header = () => {
           <FaRegHeart className="text-xl text-gray-600 cursor-pointer" />
 
           <div className="text-sm text-gray-500">
-            <p className="text-[10px]">WELCOME</p>
-            <Link href="/user-login?ref=header">LOG IN / REGISTER</Link>
+            <p className="text-[10px]">WELCOME {user?.name}</p>
+            {
+              user != null ?
+                <button onClick={() => dispacher(logoutHandler())}>Logout</button>
+                :
+                <Link href="/user-login?ref=header">LOG IN / REGISTER</Link>
+
+            }
+
           </div>
 
           <div className=" flex items-center gap-2">

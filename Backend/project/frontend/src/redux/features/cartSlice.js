@@ -26,6 +26,8 @@ export const cartSlice = createSlice({
             state.cart = null
             state.original_total = 0
             state.final_total = 0
+            localStorage.removeItem("cart")
+            console.log("Done-CART")
         },
         lstoCart: (state) => {
             const data = JSON.parse(localStorage.getItem('cart'))

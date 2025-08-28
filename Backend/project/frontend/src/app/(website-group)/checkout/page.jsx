@@ -1,9 +1,15 @@
 'use client'
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AxiosInstance, formatIndianCurrency } from '@/library/helper'
+import { useRouter } from "next/navigation";
+import { useRazorpay } from "react-razorpay";
+import { emptyCart } from "@/redux/features/cartSlice";
 
 const Checkout = () => {
+  const { error, isLoading, Razorpay } = useRazorpay();
+  const dispacher = useDispatch()
+  const router = useRouter()
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user.data);
   const [selectedAddress, setSelectedAddress] = useState(0);
@@ -18,8 +24,55 @@ const Checkout = () => {
     }).then(
       (response) => {
         if (response.data.success) {
+          console.log(response.data)
+          if (paymentMode == 0) {
+            dispacher(emptyCart());
+            router.push(`/thank-you/${response.data.order_id}`)
+          } else {
+            const options = {
+              key: "rzp_test_hYGOo0vBKlVRkD",
+              currency: "INR",
+              name: "Test Company",
+              description: "Test Transaction",
+              order_id: response.data.razorpay_order_id, // Generate order_id on server
+              handler: (Razorpayresponse) => {
+                AxiosInstance.post("order/success",
+                  {
+                    order_id: response.data.order_id,
+                    user_id: user?._id,
+                    razorpay_response: Razorpayresponse
+                  }
+                ).then(
+                  (successresponse) => {
+                    console.log(successresponse)
+
+                    if (successresponse.data.status == "success") {
+                      dispacher(emptyCart());
+                      router.push(`/thank-you/${response.data.order_id}`)
+                    }
+                  }
+                ).catch(
+                  (err) => {
+                    console.log(err)
+                  }
+                )
+              },
+              prefill: {
+                name: user?.name,
+                email: user?.email,
+                contact: "7340441063",
+              },
+              theme: {
+                color: "#F37254",
+              },
+            };
+
+            const razorpayInstance = new Razorpay(options);
+            razorpayInstance.open();
+          }
 
         }
+
       }
     ).catch(
       (error) => {
